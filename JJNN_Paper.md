@@ -1,4 +1,4 @@
-# General Breakdown of the Project Tasks:
+# General Breakdown of the Project Tasks (for personal records):
 
 ## Task 1: Research, background, physics
 
