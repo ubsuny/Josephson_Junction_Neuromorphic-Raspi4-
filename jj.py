@@ -26,13 +26,28 @@ def junction(t_0, t_f, num, damp, i):
         phi_dot[j] = phi_dot[j - 1] + (i - np.sin(phi[j - 1]) - damp * phi_dot[j - 1]) * t_s
     return phi, phi_dot, t_span
 
-def junction_step(p_0, pd_0, t_s, damp, i):
+def junction_step(p_0, pd_0, dt, damp, i):
     """
     Calculates a single timestep of phase and change in phase given the
     current values p0 and v0, length of time ts, and parameters i
-     (current) and damp (damping)
+     (current) and damp (damping) with Newton's method
     """
-    phi = p_0 + pd_0 * t_s
-    phi_dot = pd_0 + (i - np.sin(p_0) - damp * pd_0) * t_s
+    phi = p_0 + pd_0 * dt
+    phi_dot = pd_0 + (i - np.sin(p_0) - damp * pd_0) * dt
 
     return phi, phi_dot
+
+def synapse_step(v_0, vd_0, i_0, id_0, v1p, v2c, v2p, gamma, omega, Q, lmda, lmda_syn, r12, dt):
+    """
+    Calculates a single timestep of output voltage and current given the
+    outputs of the previous neuron
+    
+    """
+    v = v_0 + vd_0 * dt
+    v_dot = vd_0 + omega ** 2 * (v1p - Q*omega*lmda_syn/lmda * i_0
+                                 - lmda_syn/lmda * id_0 - Q/omega * vd_0)*dt
+    
+    i = i_0 + id_0 * dt
+    i_dot = (v_0 - lmda_syn*(v2c + v2p) - r12/gamma*i_0) * lmda/(lmda_syn*(1-lmda_syn))
+    
+    return i, i_dot, v, v_dot
