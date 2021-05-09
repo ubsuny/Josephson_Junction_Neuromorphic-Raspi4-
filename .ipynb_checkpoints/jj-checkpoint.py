@@ -45,7 +45,7 @@ def synapse_step(v_0, vd_0, i_0, id_0, v1p, v2c, v2p, gamma, omega, Q, lmda, lmd
     """
     v = v_0 + vd_0 * dt
     v_dot = vd_0 + omega ** 2 * (v1p - Q*omega*lmda_syn/lmda * i_0
-                                 - lmda_syn/lmda * id_0 - Q/omega * vd_0)*dt
+                                 - lmda_syn/lmda * id_0 - v_0 - Q/omega * vd_0)*dt
     
     i = i_0 + id_0 * dt
     i_dot = (v_0 - lmda_syn*(v2c + v2p) - r12/gamma*i_0) * lmda/(lmda_syn*(1-lmda_syn))
