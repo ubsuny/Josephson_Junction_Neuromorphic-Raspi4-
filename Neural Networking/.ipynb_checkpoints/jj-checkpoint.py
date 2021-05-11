@@ -37,6 +37,15 @@ def junction_step(p_0, pd_0, dt, damp, i):
 
     return phi, phi_dot
 
+def currents(lmda,phi_c,phi_p,lmda_s,i,lmda_p,i_b,eta):
+    """
+    Calculate the pulse and control current inside a junction
+    """
+    i_p = -lmda*(phi_c + phi_p) + lmda_s*i + (1-lmda_p)*i_b
+    i_c = (-lmda*(phi_c + phi_p) + lmda_s*i - lmda_p*i_b)/eta
+    
+    return i_p, i_c
+
 def synapse_step(v_0, vd_0, i_0, id_0, v1p, v2c, v2p, gamma, omega, Q, lmda, lmda_syn, r12, dt):
     """
     Calculates a single timestep of output voltage and current given the
