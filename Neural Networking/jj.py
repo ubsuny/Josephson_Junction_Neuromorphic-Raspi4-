@@ -37,7 +37,7 @@ def junction_step(p_0, pd_0, dt, damp, i):
 
     return phi, phi_dot
 
-def currents(lmda,phi_c,phi_p,lmda_s,i,lmda_p,i_b,eta):
+def currents(lmda,phi_p,phi_c,lmda_s,i,lmda_p,i_b,eta):
     """
     Calculate the pulse and control current inside a junction
     """
@@ -46,7 +46,16 @@ def currents(lmda,phi_c,phi_p,lmda_s,i,lmda_p,i_b,eta):
     
     return i_p, i_c
 
-def synapse_step(v_0, vd_0, i_0, id_0, v1p, v2c, v2p, gamma, omega, Q, lmda, lmda_syn, r12, dt):
+def change_weights(A,B,tau,t1,t0):
+    x = t1 - t0
+    if x > 0:
+        dw = A*np.exp(-x/tau)
+    else:
+        dw = -B*np.exp(x/tau)
+    return dw
+    
+
+def synapse_step(v_0, vd_0, i_0, id_0, v1p, v2p, v2c, gamma, omega, Q, lmda, lmda_syn, r12, dt):
     """
     Calculates a single timestep of output voltage and current given the
     outputs of the previous neuron
@@ -59,4 +68,4 @@ def synapse_step(v_0, vd_0, i_0, id_0, v1p, v2c, v2p, gamma, omega, Q, lmda, lmd
     i = i_0 + id_0 * dt
     i_dot = (v_0 - lmda_syn*(v2c + v2p) - r12/gamma*i_0) * lmda/(lmda_syn*(1-lmda_syn))
     
-    return i, i_dot, v, v_dot
+    return v, v_dot, i, i_dot
