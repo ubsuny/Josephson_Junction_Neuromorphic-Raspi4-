@@ -47,6 +47,11 @@ def currents(lmda,phi_p,phi_c,lmda_s,i,lmda_p,i_b,eta):
     return i_p, i_c
 
 def change_weights(A,B,tau,t1,t0):
+    """
+    Implements basic Hebbian learning to changing weights with
+    positive learning rate A, negative rate B, timescale tau,
+    output fire time t1, and input firetime t0
+    """
     x = t1 - t0
     if x > 0:
         dw = A*np.exp(-x/tau)
