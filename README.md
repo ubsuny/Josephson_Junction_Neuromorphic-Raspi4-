@@ -1,4 +1,8 @@
 # Josephson_Junction_Neuromorphic-Raspi4-
 
 This repository is for the development of a simple nueral network by the simulation of Josephson Junctions arranged to form neurons that mimic biology. This project was done specifically on the Raspberry Pi 4. This repository makes use of only a few very common libraries just as Numpy and Matplotlib. This may include tensorflow depending on the implementation of the neural network in the future. The code should be able to run on almost any Python 3 compiler. The code is in a Jupyter Notebook format for ease of showcasing results. Just make sure that the path to the jj.py file is added to the jupyter path because my raspberry pi 4 was defaulting to a different folder. You can simply edit the sys.path.append line in my files for the easiest solution.
-If you intend to use git to remotely upload to a repository, make sure you do not upload via a password, as [Github will remove this feature in August](https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/).
+Videos on both topics can be found in either related folder, minus the media folder where the images for the wiki go. All of the code here is okay to be used and distributed as you please, just look at the license for the simple neural network code, as I based it off of this resource: https://towardsdatascience.com/how-to-build-your-own-neural-network-from-scratch-in-python-68998a08e4f6.
+
+The Neuron Model Folder details everything that involves what its title suggests. This goes to an individual neuron and does not go into the connections between.
+
+The Neural Network Folder details the networking part, and has a bit more of the model within it, specifically the connection between the neurons. Information on the full model and its source can be found in the wiki.
