@@ -1,0 +1,3 @@
+### Nueral Networking
+
+This folder contains the implementation of a spiking neural network and its results. The simple neural network shows a basic example of what a discrete network does and acts as an XOR gate. It is the same structure that is attempted for the Spiking Nueral Network. The connection notebook shows how to link the neurons, and the weights notebook implements Hebbian learning between them. The Josephon Nueral Network notebook is the main file with the results. The network did not work as intended but shows merit for the model. Most of this discussion can be found in that file.
